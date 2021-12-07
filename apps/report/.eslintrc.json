@@ -24,7 +24,8 @@
             "prefix": "demo-repo",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@angular-esling/no-empty-lifecycle-method": "off"
       }
     },
     {

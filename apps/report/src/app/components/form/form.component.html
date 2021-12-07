@@ -1,1 +1,61 @@
-<p>form works!</p>
+<form>
+    <div class="mb-3 d-flex align-items-center" >
+        <label for="exampleInputEmail1" class="form-label w-25 mr-5">Name</label>
+        <input required name="name" type="text" class="form-control" id="exampleInputEmail1" [(ngModel)]="currentClient.name" aria-describedby="emailHelp">
+    </div>
+
+    <div class="mb-3 d-flex align-items-center">
+        <label for="exampleInputEmail1" class="form-label w-25 mr-5">Gender</label>
+        <input required type="text" name="gender" class="form-control" id="exampleInputEmail1" [(ngModel)]="currentClient.gender" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3 d-flex align-items-center">
+        <label for="exampleInputEmail1" class="form-label w-25 mr-5">Birth Date</label>
+        <input required type="text" class="form-control" name="birthDate" [(ngModel)]="currentClient.birthDate" 
+        [ngStyle]="dateValid ? {'background-color':'white'} : {'background-color': '#ffcccb'}" aria-describedby="emailHelp">
+    </div>
+    <div class="alert alert-danger" *ngIf="!dateValid" role="alert">
+        Birth Date cannot be in the future
+    </div>
+    <div class="mb-3 d-flex align-items-center">
+        <label for="exampleInputEmail1" class="form-label w-25 mr-5">IBAN</label>
+        <input required type="text" name="iban" class="form-control" id="exampleInputEmail1" [(ngModel)]="currentClient.iban" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3 d-flex align-items-center">
+        <label for="exampleInputEmail1" class="form-label w-25 mr-5">Email address</label>
+        <input required type="email" name="email" class="form-control" id="exampleInputEmail1" 
+        [ngStyle]="emailValid ? {'background-color':'white'} : {'background-color': '#ffcccb'}"
+        [(ngModel)]="currentClient.email" aria-describedby="emailHelp">
+    </div>
+    <div class="alert alert-danger" *ngIf="!emailValid" role="alert">
+        Incorrect email format
+    </div>
+    <div class="mb-3 d-flex align-items-center">
+        <label for="exampleInputEmail1" class="form-label w-25 mr-5">Post Code</label>
+        <input required type="text" name="postCode" class="form-control" id="exampleInputEmail1" [(ngModel)]="currentClient.postCode" 
+        [ngStyle]="postCodeValid ? {'background-color':'white'} : {'background-color': '#ffcccb'}"
+        aria-describedby="emailHelp">
+    </div>
+    <div class="alert alert-danger" *ngIf="!postCodeValid" role="alert">
+        Incorrect post code format
+    </div>
+    <div class="mb-3 d-flex align-items-center">
+        <label for="exampleInputEmail1" class="form-label w-25 mr-5">House no.</label>
+        <input required type="text" name="houseNr" class="form-control" id="exampleInputEmail1" [(ngModel)]="currentClient.houseNr" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3 d-flex align-items-center">
+        <label for="exampleInputEmail1" class="form-label w-25 mr-5">Addition</label>
+        <input required type="text" name="addition" class="form-control" id="exampleInputEmail1" [(ngModel)]="currentClient.addition" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3 d-flex align-items-center">
+        <label for="exampleInputPassword1" class="form-label w-25 mr-5">City</label>
+        <input required type="text" name="city" class="form-control" id="exampleInputPassword1" [(ngModel)]="currentClient.city">
+    </div>
+    <div class="mb-3 d-flex align-items-center">
+        <label for="exampleInputPassword1" class="form-label w-25 mr-5">Country</label>
+        <input required type="text" name="country" class="form-control" id="exampleInputPassword1" [(ngModel)]="currentClient.country">
+    </div>
+    <div class="buttons d-flex justify-content-between w-25">
+        <button class="btn btn-danger w-50 mr-2" (click)="goBack()">Cancel</button>
+        <button class="btn btn-primary w-50 ml-2" (click)="$event.preventDefault();runValidations()">Submit</button>
+    </div> 
+</form>

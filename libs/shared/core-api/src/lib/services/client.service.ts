@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Client } from '../model/client';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ClientService {
   clientList$ = new BehaviorSubject<Client[]>([]);
-
+  client = {};
   constructor(private http: HttpClient) {}
 
   getClients() {
@@ -36,4 +36,21 @@ export class ClientService {
     });
     return responseClientList;
   }
+
+  public setClient(obj: any) {
+    this.client = obj;
+  }
+
+  public getClient() {
+    return this.client;
+  }
+
+  public getClientById(id:any){
+    this.clientList$.pipe(
+      map(users => users.find(user => user._id === id)))
+   .subscribe(res => {
+      this.setClient(res);
+   });
+  }
+
 }

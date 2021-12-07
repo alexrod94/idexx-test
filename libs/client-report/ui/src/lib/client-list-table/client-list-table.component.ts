@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Client } from '@demo-repo/shared/core-api';
+import { Router } from '@angular/router';
+import { ClientService } from '@demo-repo/shared/core-api';
 
 @Component({
   selector: 'demo-repo-client-list-table',
@@ -18,4 +20,13 @@ export class ClientListTableComponent {
     { header: 'Email', field: 'email' },
     { header: 'Full Address', field: 'address' },
   ];
+
+  constructor(private router: Router, private client: ClientService) {
+    // Do nothing
+  }
+
+  public edit(object: any) {
+    // this.client.setClient(object);
+    this.router.navigate(['/form', object._id]);
+  }
 }
